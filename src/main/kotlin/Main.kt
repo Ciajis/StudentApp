@@ -1,34 +1,24 @@
-data class Student(
-    val id: String,
-    val name: String,
-    val course: String,
-    val mark: Double
-) {
-
-    override fun toString(): String {
-        return "Name: $name, Course: $course, Mark: $mark"
-    }
-}
-
-
 fun main() {
-    // Create an instance of the Student class...
+    // 1. Create a student (mark is 0 by default)
     val student1 = Student(
         id = "s12345",
         name = "Jane Doe",
-        course = "Computing Science",
-        mark = 88.5
+        course = "Computing Science"
     )
 
-    // Create a second student
-    val student2 = Student(
-        id = "s67890",
-        name = "John Smith",
-        course = "Data Analytics",
-        mark = 76.0
-    )
+    println("Created student: $student1")
 
-    // Print the student details.
-    println(student1)
-    println(student2)
+    // Prompt the user for the mark
+    print("Please enter a mark for ${student1.name}: ")
+    val inputMark = readlnOrNull()?.toDoubleOrNull() ?: -1.0 // Safely read a Double
+
+    // Set the mark using the custom setter
+    student1.mark = inputMark
+
+    // Print the student's final status
+    println("\n--- Student Status ---")
+    println("Name: ${student1.name}")
+    println("Mark: ${student1.mark}") // Access the mark property
+    println("Grade: ${student1.getGrade()}") // Call the getGrade() method
+    println("Passed: ${student1.didPass()}") // Call the didPass() method
 }
